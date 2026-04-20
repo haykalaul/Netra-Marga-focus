@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<title>NetraMarga</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetraMarga - Eye Health Reminder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+<body class="theme-focus">
 
-<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">NetraMarga</h1>
+            <div class="nav-buttons">
+                <button id="reportBtn" class="nav-btn">📊 Report</button>
+                <button id="settingBtn" class="nav-btn">⚙️ Setting</button>
+                <button class="nav-btn profile-btn">👤</button>
+            </div>
+        </div>
+    </nav>
 
-<h1 class="logo">NetraMarga</h1>
+    <main class="container">
+        <p class="subtitle">Eye Health Reminder</p>
+        
+        <div class="mode-tabs">
+            <button class="mode-tab active" id="focusMode">Focus</button>
+            <button class="mode-tab" id="breakMode">Break</button>
+        </div>
 
-<p class="subtitle">Eye Health Reminder</p>
+        <div class="timer-card">
+            <h2 id="session-type">Focus Session</h2>
+            <div id="timer">20:00</div>
+        </div>
 
-<h2>Focus Session</h2>
+        <div class="controls">
+            <button id="startBtn">START</button>
+        </div>
 
-<div class="timer-card">
+        <div class="progress-container">
+            <div id="progress"></div>
+        </div>
 
-<div id="timer">20:00</div>
+        <p id="desc">Focus on your work for 20 minutes 🎯</p>
+    </main>
 
-</div>
+    <!-- Report Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Productivity Report</h3>
+                <span class="close-modal" id="closeReport">&times;</span>
+            </div>
+            <div class="report-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Focus Sessions</span>
+                    <span class="stat-value" id="stats-focus">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Focus Time</span>
+                    <span class="stat-value" id="stats-time">0m</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="progress-bar">
-<div id="progress"></div>
-</div>
+    <!-- Alarm Audio -->
+    <audio id="alarm-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
 
-<button id="startBtn">Start</button>
-
-<p id="desc">Focus on your work for 20 minutes 🎯</p>
-
-
-<!-- POPUP BREAK -->
-
-<div id="popup" class="popup">
-
-<div class="popup-content">
-
-<h2>Break Time 👀</h2>
-
-<p>Look at something 20 feet away for 20 seconds</p>
-
-</div>
-
-</div>
-
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
-</html>
+</html>
