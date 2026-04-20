@@ -6,6 +6,7 @@ let timeLeft = WORK_TIME;
 let isBreak = false;
 let isRunning = false;
 let timerInterval = null;
+let endTime = null; // To store the exact time the session should end
 
 // Stats tracking
 let focusSessionsCount = 0;
@@ -73,14 +74,20 @@ function startTimer() {
     startBtn.textContent = "STOP";
     startBtn.classList.add("running");
     
+    // Set the end time relative to the current time left
+    endTime = Date.now() + (timeLeft * 1000);
+    
     timerInterval = setInterval(() => {
-        timeLeft--;
+        const now = Date.now();
+        const difference = Math.max(0, Math.round((endTime - now) / 1000));
+        
+        timeLeft = difference;
         updateDisplay();
         
         if (timeLeft <= 0) {
             handleSessionComplete();
         }
-    }, 1000);
+    }, 100); // Check more frequently (every 100ms) for smoother update even if throttled
 }
 
 function pauseTimer() {
@@ -118,6 +125,9 @@ function switchMode(toBreak) {
     pauseTimer();
     isBreak = toBreak;
     timeLeft = isBreak ? BREAK_TIME : WORK_TIME;
+    
+    // Reset end time
+    endTime = null;
     
     // Update UI
     if (isBreak) {
@@ -180,4 +190,5 @@ function closeModals() {
 }
 
 // Initialize on load
-init();
+init();
+
