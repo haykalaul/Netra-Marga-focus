@@ -46,6 +46,14 @@
         <p id="desc">Focus on your work for 20 minutes 🎯</p>
     </main>
 
+    <!-- Transition Popup -->
+    <div id="popup" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#1e1e2e; color:#fff; border-radius:18px; padding:2.5rem 3rem; text-align:center; max-width:380px; box-shadow:0 8px 40px rgba(0,0,0,0.5); font-family:inherit;">
+            <div style="font-size:2.5rem; margin-bottom:1rem;">🔔</div>
+            <p id="popupMsg" style="font-size:1.15rem; font-weight:600; line-height:1.5; margin:0;"></p>
+        </div>
+    </div>
+
     <!-- Report Modal -->
     <div id="reportModal" class="modal">
         <div class="modal-content">
@@ -66,8 +74,7 @@
         </div>
     </div>
 
-    <!-- Alarm Audio -->
-    <audio id="alarm-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+
 
     <script src="script.js"></script>
 </body>

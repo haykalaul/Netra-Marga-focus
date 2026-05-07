@@ -18,7 +18,9 @@ const startBtn = document.getElementById("startBtn");
 const sessionTypeTitle = document.getElementById("session-type");
 const description = document.getElementById("desc");
 const progressInner = document.getElementById("progress");
-const alarmSound = document.getElementById("alarm-sound");
+const popup = document.getElementById("popup");
+const popupMsg = document.getElementById("popupMsg");
+const alarmSound = new Audio("sfx-alarm-nm.aac");
 const body = document.body;
 
 // Tab buttons
@@ -104,21 +106,25 @@ function handleSessionComplete() {
     if (!isBreak) {
         focusSessionsCount++;
         totalFocusMinutes += Math.round(WORK_TIME / 60);
-        showNotification("Focus session complete!", "Time for a 20-second eye break 👀");
+        if (popupMsg) popupMsg.textContent = "Break time! Look at something 20 feet away for 20 seconds";
+        popup.style.display = "flex";
         
         // Auto play break
         setTimeout(() => {
+            popup.style.display = "none";
             switchMode(true);
             startTimer();
-        }, 1500); 
+        }, 3000); 
     } else {
-        showNotification("Break finished!", "Ready to focus again? 🎯");
+        if (popupMsg) popupMsg.textContent = "Focus on your work for 20 minutes 🎯";
+        popup.style.display = "flex";
         
         // Return to focus mode and auto-start, same as work → break
         setTimeout(() => {
+            popup.style.display = "none";
             switchMode(false);
             startTimer();
-        }, 1500);
+        }, 3000);
     }
 }
 
@@ -168,16 +174,8 @@ function updateDisplay() {
 // --- Utils ---
 
 function playAlarm() {
+    alarmSound.currentTime = 0;
     alarmSound.play().catch(e => console.log("Sound play prevented by browser policy", e));
-}
-
-function showNotification(title, message) {
-    if (Notification.permission === "granted") {
-        new Notification(title, {
-            body: message,
-            icon: "https://cdn-icons-png.flaticon.com/512/2966/2966486.png"
-        });
-    }
 }
 
 function openReport() {
