@@ -114,9 +114,10 @@ function handleSessionComplete() {
     } else {
         showNotification("Break finished!", "Ready to focus again? 🎯");
         
-        // Return to focus mode but don't auto-start
+        // Return to focus mode and auto-start, same as work → break
         setTimeout(() => {
             switchMode(false);
+            startTimer();
         }, 1500);
     }
 }
